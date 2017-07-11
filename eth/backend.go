@@ -1,18 +1,18 @@
-// Copyright 2014 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2014 The go-sferum Authors
+// This file is part of the go-sferum library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The go-sferum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sferum library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-sferum library. If not, see <http://www.gnu.org/licenses/>.
 
 // Package eth implements the Ethereum protocol.
 package eth
@@ -25,28 +25,28 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/miner"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/codesferum/go-sferum/accounts"
+	"github.com/codesferum/go-sferum/common"
+	"github.com/codesferum/go-sferum/common/hexutil"
+	"github.com/codesferum/go-sferum/consensus"
+	"github.com/codesferum/go-sferum/consensus/clique"
+	"github.com/codesferum/go-sferum/consensus/ethash"
+	"github.com/codesferum/go-sferum/core"
+	"github.com/codesferum/go-sferum/core/types"
+	"github.com/codesferum/go-sferum/core/vm"
+	"github.com/codesferum/go-sferum/eth/downloader"
+	"github.com/codesferum/go-sferum/eth/filters"
+	"github.com/codesferum/go-sferum/eth/gasprice"
+	"github.com/codesferum/go-sferum/ethdb"
+	"github.com/codesferum/go-sferum/event"
+	"github.com/codesferum/go-sferum/internal/ethapi"
+	"github.com/codesferum/go-sferum/log"
+	"github.com/codesferum/go-sferum/miner"
+	"github.com/codesferum/go-sferum/node"
+	"github.com/codesferum/go-sferum/p2p"
+	"github.com/codesferum/go-sferum/params"
+	"github.com/codesferum/go-sferum/rlp"
+	"github.com/codesferum/go-sferum/rpc"
 )
 
 type LesServer interface {
@@ -59,7 +59,7 @@ type LesServer interface {
 type Ethereum struct {
 	chainConfig *params.ChainConfig
 	// Channel for shutting down the service
-	shutdownChan  chan bool // Channel for shutting down the ethereum
+	shutdownChan  chan bool // Channel for shutting down the sferum
 	stopDbUpgrade func()    // stop chain db sequential key upgrade
 	// Handlers
 	txPool          *core.TxPool
@@ -233,7 +233,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *Config, chainConfig
 	}
 }
 
-// APIs returns the collection of RPC services the ethereum package offers.
+// APIs returns the collection of RPC services the sferum package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
 func (s *Ethereum) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.ApiBackend)

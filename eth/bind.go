@@ -1,18 +1,18 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// Copyright 2015 The go-sferum Authors
+// This file is part of the go-sferum library.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
+// The go-sferum library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sferum library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-sferum library. If not, see <http://www.gnu.org/licenses/>.
 
 package eth
 
@@ -20,13 +20,13 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/codesferum/go-sferum"
+	"github.com/codesferum/go-sferum/common"
+	"github.com/codesferum/go-sferum/common/hexutil"
+	"github.com/codesferum/go-sferum/core/types"
+	"github.com/codesferum/go-sferum/internal/ethapi"
+	"github.com/codesferum/go-sferum/rlp"
+	"github.com/codesferum/go-sferum/rpc"
 )
 
 // ContractBackend implements bind.ContractBackend with direct calls to Ethereum
@@ -65,7 +65,7 @@ func (b *ContractBackend) PendingCodeAt(ctx context.Context, contract common.Add
 // ContractCall implements bind.ContractCaller executing an Ethereum contract
 // call with the specified data as the input. The pending flag requests execution
 // against the pending block, not the stable head of the chain.
-func (b *ContractBackend) CallContract(ctx context.Context, msg ethereum.CallMsg, blockNum *big.Int) ([]byte, error) {
+func (b *ContractBackend) CallContract(ctx context.Context, msg sferum.CallMsg, blockNum *big.Int) ([]byte, error) {
 	out, err := b.bcapi.Call(ctx, toCallArgs(msg), toBlockNumber(blockNum))
 	return out, err
 }
@@ -73,12 +73,12 @@ func (b *ContractBackend) CallContract(ctx context.Context, msg ethereum.CallMsg
 // ContractCall implements bind.ContractCaller executing an Ethereum contract
 // call with the specified data as the input. The pending flag requests execution
 // against the pending block, not the stable head of the chain.
-func (b *ContractBackend) PendingCallContract(ctx context.Context, msg ethereum.CallMsg) ([]byte, error) {
+func (b *ContractBackend) PendingCallContract(ctx context.Context, msg sferum.CallMsg) ([]byte, error) {
 	out, err := b.bcapi.Call(ctx, toCallArgs(msg), rpc.PendingBlockNumber)
 	return out, err
 }
 
-func toCallArgs(msg ethereum.CallMsg) ethapi.CallArgs {
+func toCallArgs(msg sferum.CallMsg) ethapi.CallArgs {
 	args := ethapi.CallArgs{
 		To:   msg.To,
 		From: msg.From,
@@ -124,7 +124,7 @@ func (b *ContractBackend) SuggestGasPrice(ctx context.Context) (*big.Int, error)
 // the backend blockchain. There is no guarantee that this is the true gas limit
 // requirement as other transactions may be added or removed by miners, but it
 // should provide a basis for setting a reasonable default.
-func (b *ContractBackend) EstimateGas(ctx context.Context, msg ethereum.CallMsg) (*big.Int, error) {
+func (b *ContractBackend) EstimateGas(ctx context.Context, msg sferum.CallMsg) (*big.Int, error) {
 	out, err := b.bcapi.EstimateGas(ctx, toCallArgs(msg))
 	return out.ToInt(), err
 }

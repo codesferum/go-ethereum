@@ -6,9 +6,9 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/common/math"
+	"github.com/codesferum/go-sferum/common"
+	"github.com/codesferum/go-sferum/common/hexutil"
+	"github.com/codesferum/go-sferum/common/math"
 )
 
 func (s StructLog) MarshalJSON() ([]byte, error) {

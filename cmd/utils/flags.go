@@ -1,20 +1,20 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of go-ethereum.
+// Copyright 2015 The go-sferum Authors
+// This file is part of go-sferum.
 //
-// go-ethereum is free software: you can redistribute it and/or modify
+// go-sferum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-ethereum is distributed in the hope that it will be useful,
+// go-sferum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
+// along with go-sferum. If not, see <http://www.gnu.org/licenses/>.
 
-// Package utils contains internal helper functions for go-ethereum commands.
+// Package utils contains internal helper functions for go-sferum commands.
 package utils
 
 import (
@@ -28,31 +28,31 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/ethstats"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/les"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/p2p/netutil"
-	"github.com/ethereum/go-ethereum/params"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv5"
+	"github.com/codesferum/go-sferum/accounts"
+	"github.com/codesferum/go-sferum/accounts/keystore"
+	"github.com/codesferum/go-sferum/common"
+	"github.com/codesferum/go-sferum/consensus/ethash"
+	"github.com/codesferum/go-sferum/core"
+	"github.com/codesferum/go-sferum/core/state"
+	"github.com/codesferum/go-sferum/core/vm"
+	"github.com/codesferum/go-sferum/crypto"
+	"github.com/codesferum/go-sferum/eth"
+	"github.com/codesferum/go-sferum/eth/downloader"
+	"github.com/codesferum/go-sferum/eth/gasprice"
+	"github.com/codesferum/go-sferum/ethdb"
+	"github.com/codesferum/go-sferum/ethstats"
+	"github.com/codesferum/go-sferum/event"
+	"github.com/codesferum/go-sferum/les"
+	"github.com/codesferum/go-sferum/log"
+	"github.com/codesferum/go-sferum/metrics"
+	"github.com/codesferum/go-sferum/node"
+	"github.com/codesferum/go-sferum/p2p"
+	"github.com/codesferum/go-sferum/p2p/discover"
+	"github.com/codesferum/go-sferum/p2p/discv5"
+	"github.com/codesferum/go-sferum/p2p/nat"
+	"github.com/codesferum/go-sferum/p2p/netutil"
+	"github.com/codesferum/go-sferum/params"
+	whisper "github.com/codesferum/go-sferum/whisper/whisperv5"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -807,7 +807,7 @@ func SetNodeConfig(ctx *cli.Context, cfg *node.Config) {
 	case ctx.GlobalIsSet(DataDirFlag.Name):
 		cfg.DataDir = ctx.GlobalString(DataDirFlag.Name)
 	case ctx.GlobalBool(DevModeFlag.Name):
-		cfg.DataDir = filepath.Join(os.TempDir(), "ethereum_dev_mode")
+		cfg.DataDir = filepath.Join(os.TempDir(), "sferum_dev_mode")
 	case ctx.GlobalBool(TestnetFlag.Name):
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "testnet")
 	case ctx.GlobalBool(RinkebyFlag.Name):
